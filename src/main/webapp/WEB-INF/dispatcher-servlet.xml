@@ -10,8 +10,8 @@
 	<context:component-scan base-package="br.com.fake.controller" />
 	<mvc:annotation-driven />
 	<mvc:default-servlet-handler />
-
-	
+	<mvc:resources mapping="/resources/**" location="/resources/" />
+  	
 	<!-- TILES -->
 	<bean id="tilesConfigurer"
 		class="org.springframework.web.servlet.view.tiles2.TilesConfigurer">
