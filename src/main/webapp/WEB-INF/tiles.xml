@@ -10,7 +10,7 @@
     </definition>
 
     <!--  Pages -->
-    <definition name="welcome" extends="master.page">
-        <put-attribute name="body" value="/pages/welcome.jsp"/>
+    <definition name="virtrine" extends="master.page">
+        <put-attribute name="body" value="/pages/vitrine.jsp"/>
     </definition>
 </tiles-definitions>

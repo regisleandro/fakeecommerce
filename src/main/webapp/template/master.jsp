@@ -10,12 +10,12 @@
 <title>Fake Ecommerce</title>
 
 <!-- Bootstrap Core CSS -->
-<link href="../resources/css/bootstrap.min.css" rel="stylesheet">
+<link href="<c:url value='/resources/css/bootstrap.min.css'/>" rel="stylesheet">
 
 <!-- Custom CSS -->
-<link href="../resources/css/heroic-features.css" rel="stylesheet">
+<link href="<c:url value='/resources/css/heroic-features.css'/>" rel="stylesheet">
 
-<script src="../resources/js/jquery-1.11.1.js"> </script>
+<script src="<c:url value='/resources/js/jquery-1.11.1.js'/>" > </script>
 
 </head>
 <body>
@@ -26,10 +26,10 @@
 	</div>
 
 	<!--[if IE]>
-            <script src="../resources/js/bootstrap.min.ie.js"></script>
+            <script src="<c:url value='/resources/js/bootstrap.min.ie.js'/>"></script>
         <![endif]-->
 	<!--[if !IE]><!-->
-	<script src="../resources/js/bootstrap.min.js"></script>
+	<script src="<c:url value='/resources/js/bootstrap.min.js'/>"></script>
 	<!--<![endif]-->
 
 	<tiles:insertAttribute name="footer" />

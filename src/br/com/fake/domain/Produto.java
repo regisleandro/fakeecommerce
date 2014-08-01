@@ -33,6 +33,10 @@ public class Produto {
 		this.quantidadeEstoque = quantidadeEstoque;
 	}
 	
+	public int getId(){
+		return this.id;
+	}
+	
 	public boolean podeComprar(int quantidade){
 		int restantes = getQuantidadeEstoque() - quantidade;
 		return restantes >= 0;
