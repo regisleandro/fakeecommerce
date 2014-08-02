@@ -12,13 +12,14 @@ public class CalculadoraDePrecos {
 		
 		if(produto.getTipo().equals(TipoDeProduto.ALTO_LUXO) || produto.getTipo().equals(TipoDeProduto.LUXO)) {
 			//quando estiver acabando os produtos 
-			if((produto.getQuantidadeEstoque() - quantidade) / new Double(produto.getQuantidadeEstoque()) <= 0.50) { 
+			if((produto.getQuantidadeEstoque() - produto.getQuantidadeVendida()) / new Double(produto.getQuantidadeEstoque()) <= 0.05) {
 				preco = produto.getPreco().add(produto.getPreco().multiply(BigDecimal.valueOf(0.10)));
+				System.out.println(preco);
 			} else {
 				preco = produto.getPreco();
 			}
 		} else if(produto.getTipo().equals(TipoDeProduto.MEDIO)) {
-			if((produto.getQuantidadeEstoque() - quantidade) / new Double(produto.getQuantidadeEstoque()) <= 0.50) { 
+			if((produto.getQuantidadeEstoque() - produto.getQuantidadeVendida()) / new Double(produto.getQuantidadeEstoque()) <= 0.50) { 
 				preco = produto.getPreco().add(produto.getPreco().multiply(BigDecimal.valueOf(0.20)));
 			} else {
 				preco = produto.getPreco();
@@ -28,7 +29,7 @@ public class CalculadoraDePrecos {
 				preco = preco.add(produto.getPreco().multiply(BigDecimal.valueOf(0.10)));
 			}
 		} else if(produto.getTipo().equals(TipoDeProduto.NORMAL)) {
-			if((produto.getQuantidadeEstoque() - quantidade) / new Double(produto.getQuantidadeEstoque()) <= 0.50) { 
+			if((produto.getQuantidadeEstoque() - produto.getQuantidadeVendida()) / new Double(produto.getQuantidadeEstoque()) <= 0.50) { 
 				preco = produto.getPreco().add(produto.getPreco().multiply(BigDecimal.valueOf(0.20)));
 			} else {
 				preco = produto.getPreco();

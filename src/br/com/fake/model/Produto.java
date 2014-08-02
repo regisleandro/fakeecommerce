@@ -17,6 +17,7 @@ public class Produto {
 	private String descricao;
 	private BigDecimal preco;
 	private int quantidadeEstoque;
+	private int quantidadeVendida;
 	@Enumerated(EnumType.STRING)
 	private TipoDeProduto tipo;
 	private int mesesGarantia;
@@ -42,6 +43,13 @@ public class Produto {
 	public int getId(){
 		return this.id;
 	}
+	
+	public int getQuantidadeVendida() {
+		return quantidadeVendida;
+	}
+	public void setQuantidadeVendida(int quantidadeVendida) {
+		this.quantidadeVendida = quantidadeVendida;
+	}
 	public TipoDeProduto getTipo() {
 		return tipo;
 	}
@@ -54,8 +62,15 @@ public class Produto {
 	public void setMesesGarantia(int mesesGarantia) {
 		this.mesesGarantia = mesesGarantia;
 	}
+	public void reservarProduto(int quantidade){
+		this.quantidadeVendida += quantidade;
+	}
+	public Integer getProdutosDisponiveis() {
+		return quantidadeEstoque - quantidadeVendida;
+	}
+
 	public boolean podeComprar(int quantidade){
-		int restantes = getQuantidadeEstoque() - quantidade;
+		int restantes = getProdutosDisponiveis() - quantidade;
 		return restantes > 0;
 	}
 }
