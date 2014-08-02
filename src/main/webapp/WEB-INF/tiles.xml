@@ -4,13 +4,20 @@
 <tiles-definitions>
 
     <!-- Master -->
-    <definition name="master.page" template="/template/master.jsp">
-        <put-attribute name="header" value="/template/header.jsp"/>
-        <put-attribute name="footer" value="/template/footer.jsp"/>
+    <definition name="master.page" template="/WEB-INF/views/template/master.jsp">
+        <put-attribute name="header" value="/WEB-INF/views/template/header.jsp"/>
+        <put-attribute name="footer" value="/WEB-INF/views/template/footer.jsp"/>
     </definition>
 
     <!--  Pages -->
-    <definition name="virtrine" extends="master.page">
-        <put-attribute name="body" value="/pages/vitrine.jsp"/>
+    <definition name="vitrine" extends="master.page">
+        <put-attribute name="body" value="/WEB-INF/views/vitrine.jsp"/>
+    </definition>
+    <definition name="carrinho" extends="master.page">
+        <put-attribute name="body" value="/WEB-INF/views/carrinho.jsp"/>
+    </definition>
+    <definition name="conclusao" extends="master.page">
+        <put-attribute name="header" value="/WEB-INF/views/template/emptyHeader.jsp"/>
+        <put-attribute name="body" value="/WEB-INF/views/conclusao.jsp"/>
     </definition>
 </tiles-definitions>

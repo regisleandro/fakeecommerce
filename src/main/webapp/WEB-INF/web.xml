@@ -7,7 +7,7 @@
 
 	<!-- Spring servlet that will handle the requests -->
 	<servlet>
-		<servlet-name>dispatcher</servlet-name>
+		<servlet-name>springmvc</servlet-name>
 		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
 		<init-param>
 			<param-name>contextConfigLocation</param-name>
@@ -17,7 +17,7 @@
 	</servlet>
 	
 	<servlet-mapping>
-		<servlet-name>dispatcher</servlet-name>
+		<servlet-name>springmvc</servlet-name>
 		<url-pattern>/</url-pattern>
 	</servlet-mapping>
 

@@ -1,10 +1,13 @@
 package br.com.fake;
 
+import java.math.BigDecimal;
+
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 
-import br.com.fake.domain.Produto;
+import br.com.fake.model.Produto;
+import br.com.fake.model.TipoDeProduto;
 
 public class PreencheBanco {
 
@@ -20,8 +23,10 @@ public class PreencheBanco {
 		for(int i = 0; i < 4; i++){
 			Produto p = new Produto();
 			p.setDescricao("Produto_"+Integer.valueOf(i+1));
-			p.setPreco(10.00);
+			p.setPreco(new BigDecimal(10.00));
 			p.setQuantidadeEstoque(10*i);
+			p.setTipo(TipoDeProduto.LUXO);
+			p.setMesesGarantia(20);
 			entityManager.persist(p);
 		}
 		
