@@ -30,6 +30,5 @@ public class VitrineController {
 		ModelAndView model = new ModelAndView("carrinho");
 		model.addObject("produto",carrinho.getProduto(id));
 		return model;
-	}
-	
+	}	
 }
