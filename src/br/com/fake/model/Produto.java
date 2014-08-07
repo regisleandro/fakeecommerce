@@ -2,11 +2,14 @@ package br.com.fake.model;
 
 import java.math.BigDecimal;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 
 @Entity
 public class Produto {
@@ -21,6 +24,9 @@ public class Produto {
 	@Enumerated(EnumType.STRING)
 	private TipoDeProduto tipo;
 	private int mesesGarantia;
+	
+	@OneToOne(mappedBy = "produto")
+	private Promocao promocao;
 	
 	public String getDescricao() {
 		return descricao;
@@ -68,7 +74,12 @@ public class Produto {
 	public Integer getProdutosDisponiveis() {
 		return quantidadeEstoque - quantidadeVendida;
 	}
-
+	public Promocao getPromocao() {
+		return promocao;
+	}
+	public void setPromocao(Promocao promocao) {
+		this.promocao = promocao;
+	}
 	public boolean podeComprar(int quantidade){
 		int restantes = getProdutosDisponiveis() - quantidade;
 		return restantes > 0;

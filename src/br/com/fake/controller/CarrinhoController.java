@@ -32,7 +32,7 @@ public class CarrinhoController {
 			model.addObject("panel", "panel-danger");
 			model.addObject("mensagem", "Sem estoque");
 		}
-		
+		produto.setQuantidadeVendida(quantidade);
 		BigDecimal preco = CalculadoraDePrecos.calcula(produto, quantidade);
 		model.addObject("precoFinal", preco);
 		model.addObject(produto);
