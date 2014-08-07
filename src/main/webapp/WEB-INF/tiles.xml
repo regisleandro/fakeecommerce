@@ -14,7 +14,8 @@
         <put-attribute name="body" value="/WEB-INF/views/vitrine.jsp"/>
     </definition>
     <definition name="carrinho" extends="master.page">
-        <put-attribute name="body" value="/WEB-INF/views/carrinho.jsp"/>
+    	<put-attribute name="header" value="/WEB-INF/views/template/emptyHeader.jsp"/>
+    	<put-attribute name="body" value="/WEB-INF/views/carrinho.jsp"/>
     </definition>
     <definition name="produtos" extends="master.page">
     	<put-attribute name="header" value="/WEB-INF/views/template/emptyHeader.jsp"/>

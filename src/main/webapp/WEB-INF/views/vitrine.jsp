@@ -2,15 +2,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 
-		<!-- Jumbotron Header -->
-		<header class="jumbotron hero-spacer">
-			<h1>Seja bem-vindo!</h1>
-			<p>Esta loja foi construída para fins de estudo de Técnicas Ágeis
-				em desenvolvimento java</p>
-		</header>
-	
-		<hr>
-	
 		<!-- Title -->
 		<div class="row">
 			<div class="col-lg-12">
