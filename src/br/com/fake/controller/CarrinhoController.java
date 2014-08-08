@@ -12,15 +12,15 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
-import br.com.fake.domain.Carrinho;
+import br.com.fake.domain.ProdutoInterface;
 import br.com.fake.domain.precos.CalculadoraDePrecos;
 import br.com.fake.model.Produto;
-import br.com.fake.persistencia.CarrinhoDao;
+import br.com.fake.persistencia.ProdutoDao;
 
 @Controller
 public class CarrinhoController {
 	@Autowired
-	private Carrinho carrinho;
+	private ProdutoInterface carrinho;
 	
 	@RequestMapping(value = "/carrinho/concluirCompra/{id}", method = RequestMethod.POST)
 	public ModelAndView concluirCompra(@PathVariable("id") int id, @RequestParam("quantidade") int quantidade){

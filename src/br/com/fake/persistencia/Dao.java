@@ -11,5 +11,4 @@ public class Dao {
 	public EntityManager geEntityManager(){
 		return this.entityManager;
 	}
-
 }

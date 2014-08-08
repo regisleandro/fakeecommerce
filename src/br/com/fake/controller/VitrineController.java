@@ -6,17 +6,14 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
-import br.com.fake.domain.Carrinho;
+import br.com.fake.domain.ProdutoInterface;
 import br.com.fake.domain.Vitrine;
-import br.com.fake.persistencia.VitrineDao;
 
 @Controller
 public class VitrineController {
-	
-	@Autowired	
-	private Vitrine vitrine;
+
 	@Autowired
-	private Carrinho carrinho;
+	private ProdutoInterface vitrine;
 
 	@RequestMapping(value = "/vitrine/")
 	public ModelAndView vitrine() {
@@ -28,7 +25,7 @@ public class VitrineController {
 	@RequestMapping(value = "/vitrine/{id}")
 	public ModelAndView compra(@PathVariable("id") int id){		
 		ModelAndView model = new ModelAndView("carrinho");
-		model.addObject("produto",carrinho.getProduto(id));
+		model.addObject("produto",vitrine.getProduto(id));
 		return model;
 	}	
 }

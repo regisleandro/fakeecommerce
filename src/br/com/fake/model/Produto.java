@@ -46,6 +46,10 @@ public class Produto {
 	public void setQuantidadeEstoque(int quantidadeEstoque) {
 		this.quantidadeEstoque = quantidadeEstoque;
 	}
+	public void setId(int id){
+		this.id = id;
+	}
+	
 	public int getId(){
 		return this.id;
 	}
