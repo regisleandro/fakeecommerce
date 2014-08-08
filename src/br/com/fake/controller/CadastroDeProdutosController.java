@@ -31,15 +31,14 @@ public class CadastroDeProdutosController {
 	@RequestMapping(value = "/produtos/cadastrar")
 	public String cadastrar(@ModelAttribute Produto p, Model model) {
 		try{
+			produto.persist(p);
+
 			model.addAttribute("panel","success");
 			model.addAttribute("titulo", "Cadastro de Produtos - Concluído");
 			model.addAttribute("produto", new Produto());
 			model.addAttribute("tipos", TipoDeProduto.values());
 			model.addAttribute("produtos", produto.todos());
-			model.addAttribute("action","/produtos/cadastrar/");
-			
-			produto.persist(p);
-			
+			model.addAttribute("action","/produtos/cadastrar/");			
 		}catch(Exception ex){
 			model.addAttribute("panel","danger");
 			model.addAttribute("titulo", "Cadastro de Produtos - Erro ao efetuar o cadastro");
@@ -52,6 +51,30 @@ public class CadastroDeProdutosController {
 	@RequestMapping(value = "/produtos/alterar/")
 	public String alterar(@ModelAttribute Produto p, Model model) {
 		try{
+			produto.update(p);
+
+			model.addAttribute("panel","success");
+			model.addAttribute("titulo", "Cadastro de Produtos - Concluído");	
+			model.addAttribute("produto", new Produto());
+			model.addAttribute("tipos", TipoDeProduto.values());
+			model.addAttribute("produtos", produto.todos());
+			model.addAttribute("action","/produtos/cadastrar/");
+						
+		}catch(Exception ex){
+			model.addAttribute("panel","danger");
+			model.addAttribute("titulo", "Cadastro de Produtos - Erro ao efetuar a alteração");
+			ex.printStackTrace();
+			
+		}
+		
+		return "produtos";
+	}	
+	
+	@RequestMapping(value = "/produtos/excluir/{id}")
+	public String excluir(@PathVariable("id") int id, Model model) {
+		try{
+			produto.remove(produto.getProduto(id));
+
 			model.addAttribute("panel","success");
 			model.addAttribute("titulo", "Cadastro de Produtos - Concluído");	
 			model.addAttribute("produto", new Produto());
@@ -59,12 +82,10 @@ public class CadastroDeProdutosController {
 			model.addAttribute("produtos", produto.todos());
 			model.addAttribute("action","/produtos/cadastrar/");
 			
-			produto.update(p);
-			
 		}catch(Exception ex){
 			model.addAttribute("panel","danger");
-			model.addAttribute("titulo", "Cadastro de Produtos - Erro ao efetuar o cadastro");
-			
+			model.addAttribute("titulo", "Cadastro de Produtos - Erro ao efetuar a exclusão");
+			ex.printStackTrace();
 		}
 		
 		return "produtos";
