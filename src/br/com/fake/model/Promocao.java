@@ -1,5 +1,6 @@
 package br.com.fake.model;
 
+import java.io.Serializable;
 import java.math.BigDecimal;
 
 import javax.persistence.CascadeType;
@@ -16,7 +17,7 @@ import org.hibernate.annotations.Type;
 import org.joda.time.DateTime;
 
 @Entity
-public class Promocao {
+public class Promocao implements Serializable{
 	
 	@Id
 	@GeneratedValue(generator="gen")

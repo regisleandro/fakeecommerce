@@ -6,16 +6,15 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.servlet.ModelAndView;
 
-import br.com.fake.domain.ProdutoInterface;
+import br.com.fake.domain.ProdutoJpaDao;
 import br.com.fake.model.Produto;
 import br.com.fake.model.TipoDeProduto;
 
 @Controller
 public class CadastroDeProdutosController {
 	@Autowired
-	private ProdutoInterface<Produto> produto;
+	private ProdutoJpaDao produto;
 	
 	@RequestMapping(value = "/produtos/")
 	public String cadastroProdutos(Model model) {
@@ -23,7 +22,7 @@ public class CadastroDeProdutosController {
 		model.addAttribute("titulo", "Cadastro de Produtos");		
 		model.addAttribute("produto", new Produto());
 		model.addAttribute("tipos", TipoDeProduto.values());
-		model.addAttribute("produtos", produto.todos());
+		model.addAttribute("produtos", produto.findAll());
 		model.addAttribute("action","/produtos/cadastrar/");
 		return "produtos";
 	}
@@ -31,13 +30,13 @@ public class CadastroDeProdutosController {
 	@RequestMapping(value = "/produtos/cadastrar")
 	public String cadastrar(@ModelAttribute Produto p, Model model) {
 		try{
-			produto.persist(p);
+			produto.save(p);
 
 			model.addAttribute("panel","success");
 			model.addAttribute("titulo", "Cadastro de Produtos - Concluído");
 			model.addAttribute("produto", new Produto());
 			model.addAttribute("tipos", TipoDeProduto.values());
-			model.addAttribute("produtos", produto.todos());
+			model.addAttribute("produtos", produto.findAll());
 			model.addAttribute("action","/produtos/cadastrar/");			
 		}catch(Exception ex){
 			model.addAttribute("panel","danger");
@@ -57,7 +56,7 @@ public class CadastroDeProdutosController {
 			model.addAttribute("titulo", "Cadastro de Produtos - Concluído");	
 			model.addAttribute("produto", new Produto());
 			model.addAttribute("tipos", TipoDeProduto.values());
-			model.addAttribute("produtos", produto.todos());
+			model.addAttribute("produtos", produto.findAll());
 			model.addAttribute("action","/produtos/cadastrar/");
 						
 		}catch(Exception ex){
@@ -73,13 +72,13 @@ public class CadastroDeProdutosController {
 	@RequestMapping(value = "/produtos/excluir/{id}")
 	public String excluir(@PathVariable("id") int id, Model model) {
 		try{
-			produto.remove(produto.getProduto(id));
+			produto.deleteById(id);
 
 			model.addAttribute("panel","success");
 			model.addAttribute("titulo", "Cadastro de Produtos - Concluído");	
 			model.addAttribute("produto", new Produto());
 			model.addAttribute("tipos", TipoDeProduto.values());
-			model.addAttribute("produtos", produto.todos());
+			model.addAttribute("produtos", produto.findAll());
 			model.addAttribute("action","/produtos/cadastrar/");
 			
 		}catch(Exception ex){
@@ -95,9 +94,9 @@ public class CadastroDeProdutosController {
 	public String editar(@PathVariable("id") int id, Model model){
 		model.addAttribute("panel","default");
 		model.addAttribute("titulo", "Cadastro de Produtos");	
-		model.addAttribute("produto", produto.getProduto(id));
+		model.addAttribute("produto", produto.findOne(id));
 		model.addAttribute("tipos", TipoDeProduto.values());
-		model.addAttribute("produtos", produto.todos());
+		model.addAttribute("produtos", produto.findAll());
 		model.addAttribute("action","/produtos/alterar/");
 		return "produtos";
 	}	

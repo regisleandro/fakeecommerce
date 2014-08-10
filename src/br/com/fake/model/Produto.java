@@ -1,5 +1,6 @@
 package br.com.fake.model;
 
+import java.io.Serializable;
 import java.math.BigDecimal;
 
 import javax.persistence.CascadeType;
@@ -12,7 +13,7 @@ import javax.persistence.Id;
 import javax.persistence.OneToOne;
 
 @Entity
-public class Produto {
+public class Produto implements Serializable {
 	@Id
 	@GeneratedValue
 	private int id;
