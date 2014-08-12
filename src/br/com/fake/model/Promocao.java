@@ -18,7 +18,8 @@ import org.joda.time.DateTime;
 
 @Entity
 public class Promocao implements Serializable{
-	
+
+	private static final long serialVersionUID = -5473946447219879838L;
 	@Id
 	@GeneratedValue(generator="gen")
 	@GenericGenerator(name="gen", strategy="foreign", parameters=@Parameter(name="property", value="produto"))

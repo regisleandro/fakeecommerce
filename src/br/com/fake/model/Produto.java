@@ -14,6 +14,9 @@ import javax.persistence.OneToOne;
 
 @Entity
 public class Produto implements Serializable {
+
+	private static final long serialVersionUID = 2730448788357386144L;
+
 	@Id
 	@GeneratedValue
 	private int id;

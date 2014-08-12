@@ -7,7 +7,9 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import br.com.fake.domain.ProdutoJpaDao;
 import br.com.fake.domain.PromocaoJpaDao;
+import br.com.fake.model.Produto;
 import br.com.fake.model.Promocao;
 
 
@@ -15,84 +17,18 @@ import br.com.fake.model.Promocao;
 public class CadastroDePromocoesController {
 	@Autowired
 	private PromocaoJpaDao promocao;
+	@Autowired
+	private ProdutoJpaDao produto;
 	
-	@RequestMapping(value = "/promocoes/")
-	public String cadastroPromocaos(Model model) {
-		model.addAttribute("panel","default");
-		model.addAttribute("titulo", "Cadastro de Promocaos");		
-		model.addAttribute("produto", new Promocao());
-		model.addAttribute("produtos", promocao.findAll());
-		model.addAttribute("action","/promocoes/cadastrar/");
-		return "produtos";
-	}
-	
-	@RequestMapping(value = "/promocoes/cadastrar")
-	public String cadastrar(@ModelAttribute Promocao p, Model model) {
-		try{
-			promocao.save(p);
-
-			model.addAttribute("panel","success");
-			model.addAttribute("titulo", "Cadastro de Promocaos - Concluído");
-			model.addAttribute("produto", new Promocao());
-			model.addAttribute("produtos", promocao.findAll());
-			model.addAttribute("action","/promocoes/cadastrar/");			
-		}catch(Exception ex){
-			model.addAttribute("panel","danger");
-			model.addAttribute("titulo", "Cadastro de Promoções - Erro ao efetuar o cadastro");
-			
-		}
-		
-		return "produtos";
-	}	
-	
-	@RequestMapping(value = "/promocoes/alterar/")
-	public String alterar(@ModelAttribute Promocao p, Model model) {
-		try{
-			promocao.update(p);
-			model.addAttribute("panel","success");
-			model.addAttribute("titulo", "Cadastro de Promocaos - Concluído");	
-			model.addAttribute("produto", new Promocao());
-			model.addAttribute("produtos", promocao.findAll());
-			model.addAttribute("action","/promocoes/cadastrar/");
-						
-		}catch(Exception ex){
-			model.addAttribute("panel","danger");
-			model.addAttribute("titulo", "Cadastro de Promoções - Erro ao efetuar a alteração");
-			ex.printStackTrace();
-			
-		}
-		
-		return "produtos";
-	}	
-	
-	@RequestMapping(value = "/promocoes/excluir/{id}")
-	public String excluir(@PathVariable("id") int id, Model model) {
-		try{
-			promocao.deleteById(id);
-
-			model.addAttribute("panel","success");
-			model.addAttribute("titulo", "Cadastro de Promoções - Concluído");	
-			model.addAttribute("produto", new Promocao());
-			model.addAttribute("produtos", promocao.findAll());
-			model.addAttribute("action","/promocoes/cadastrar/");
-			
-		}catch(Exception ex){
-			model.addAttribute("panel","danger");
-			model.addAttribute("titulo", "Cadastro de Promocaos - Erro ao efetuar a exclusão");
-			ex.printStackTrace();
-		}
-		
-		return "produtos";
-	}	
-	
-	@RequestMapping(value = "/promocoes/editar/{id}")
+	@RequestMapping(value = "/promocoes/adicionar/{id}")
 	public String editar(@PathVariable("id") int id, Model model){
+		Produto p = produto.findOne(id);
 		model.addAttribute("panel","default");
-		model.addAttribute("titulo", "Cadastro de Promoções");	
-		model.addAttribute("produto", promocao.findOne(id));
-		model.addAttribute("produtos", promocao.findAll());
-		model.addAttribute("action","/promocoes/alterar/");
-		return "produtos";
+		model.addAttribute("titulo", "Cadastro de Promoções para o Produto: "+ p.getDescricao());	
+		model.addAttribute("produto", p);
+		model.addAttribute("promocao", new Promocao());
+		model.addAttribute("action","/promocoes/salvar/");
+		return "promocoes";
 	}	
 	
 }

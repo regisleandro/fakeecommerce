@@ -11,11 +11,26 @@
 
 <!-- Bootstrap Core CSS -->
 <link href="<c:url value='/resources/css/bootstrap.min.css'/>" rel="stylesheet">
-
+<!-- DateTimePicker CSS-->
+<link href="<c:url value='/resources/datepicker/css/datepicker.css'/>" rel="stylesheet">
 <!-- Custom CSS -->
 <link href="<c:url value='/resources/css/heroic-features.css'/>" rel="stylesheet">
 
+<!-- JQuery -->
 <script src="<c:url value='/resources/js/jquery-1.11.1.js'/>" > </script>
+
+<script src="<c:url value='/resources/js/moment.js'/>" > </script>
+
+<!--[if IE]>
+   <script src="<c:url value='/resources/js/bootstrap.min.ie.js'/>"></script>
+<![endif]-->
+<!--[if !IE]><!-->
+	<script src="<c:url value='/resources/js/bootstrap.min.js'/>"></script>
+<!--<![endif]-->
+
+<!-- DateTimePicker JS -->
+<script src="<c:url value='/resources/datepicker/js/bootstrap-datepicker.js'/>" > </script>
+
 
 </head>
 <body>
@@ -24,12 +39,4 @@
 
 		<tiles:insertAttribute name="body" />
 	</div>
-
-	<!--[if IE]>
-            <script src="<c:url value='/resources/js/bootstrap.min.ie.js'/>"></script>
-        <![endif]-->
-	<!--[if !IE]><!-->
-	<script src="<c:url value='/resources/js/bootstrap.min.js'/>"></script>
-	<!--<![endif]-->
-
 	<tiles:insertAttribute name="footer" />
