@@ -11,6 +11,7 @@ import br.com.fake.domain.ProdutoJpaDao;
 import br.com.fake.domain.PromocaoJpaDao;
 import br.com.fake.model.Produto;
 import br.com.fake.model.Promocao;
+import br.com.fake.model.TipoDeProduto;
 
 
 @Controller
@@ -26,9 +27,43 @@ public class CadastroDePromocoesController {
 		model.addAttribute("panel","default");
 		model.addAttribute("titulo", "Cadastro de Promoções para o Produto: "+ p.getDescricao());	
 		model.addAttribute("produto", p);
-		model.addAttribute("promocao", new Promocao());
+		Promocao promo = p.getPromocao();
+		if (promo == null){
+			 promo = new Promocao();
+		}
+		promo.setProduto(p);
+		model.addAttribute("promocao", promo);
 		model.addAttribute("action","/promocoes/salvar/");
 		return "promocoes";
 	}	
 	
+	@RequestMapping(value = "/promocoes/salvar/")
+	public String salvar(@ModelAttribute Promocao p, Model model) {
+		try{
+			System.out.println(p.getProduto().getDescricao());
+			promocao.save(p);
+						
+		}catch(Exception ex){
+			ex.printStackTrace();		
+		}
+		
+		return "produtos";
+	}	
+	
+	@RequestMapping(value = "/promocoes/excluir/{id}")
+	public String excluir(@PathVariable("id") int id, Model model) {
+		try{
+			promocao.deleteById(id);
+
+			model.addAttribute("panel","success");
+			model.addAttribute("titulo", "Exclusão de Promoção - Concluído");	
+			
+		}catch(Exception ex){
+			model.addAttribute("panel","danger");
+			model.addAttribute("titulo", "Cadastro de Produtos - Erro ao efetuar a exclusão");
+			ex.printStackTrace();
+		}
+		
+		return "produtos";
+	}	
 }

@@ -12,7 +12,7 @@
 <!-- Bootstrap Core CSS -->
 <link href="<c:url value='/resources/css/bootstrap.min.css'/>" rel="stylesheet">
 <!-- DateTimePicker CSS-->
-<link href="<c:url value='/resources/datepicker/css/datepicker.css'/>" rel="stylesheet">
+<link href="<c:url value='/resources/jquery-ui/jquery-ui.css'/>" rel="stylesheet">
 <!-- Custom CSS -->
 <link href="<c:url value='/resources/css/heroic-features.css'/>" rel="stylesheet">
 
@@ -29,8 +29,7 @@
 <!--<![endif]-->
 
 <!-- DateTimePicker JS -->
-<script src="<c:url value='/resources/datepicker/js/bootstrap-datepicker.js'/>" > </script>
-
+<script src="<c:url value='/resources/jquery-ui/jquery-ui.js'/>"></script>
 
 </head>
 <body>

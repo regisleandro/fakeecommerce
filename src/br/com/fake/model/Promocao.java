@@ -15,6 +15,7 @@ import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.Parameter;
 import org.hibernate.annotations.Type;
 import org.joda.time.DateTime;
+import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
 public class Promocao implements Serializable{
@@ -28,8 +29,10 @@ public class Promocao implements Serializable{
 	@JoinColumn(name="produto_id")
 	private Produto produto;
 	@Type(type="org.jadira.usertype.dateandtime.joda.PersistentDateTime")
+	@DateTimeFormat(pattern = "dd/mm/yyyy")
 	private DateTime dataInicio;
 	@Type(type="org.jadira.usertype.dateandtime.joda.PersistentDateTime")
+	@DateTimeFormat(pattern = "dd/mm/yyyy")
 	private DateTime dataFim;
 	private BigDecimal percentualDesconto;
 	

@@ -16,27 +16,25 @@
 						  	<c:url var="actionPath" value='${action}' />
 							<form:form method="post" action="${actionPath}" 
 									  modelAttribute="promocao" cssClass="form-horizontal">
-									 <form:hidden path="id" />
-									 
-							<div >
-<div class="form-group row"> 
-
-
-  <div class="col-xs-8">
-    <label class="control-label">Effective Date</label>
-    <div class="input-group date" id="dp3" data-date="12-02-2012" data-date-format="dd/mm/yyyy">
-      <input class="form-control" type="text" readonly="" value="12-02-2012">
-      <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
-    </div>
-  </div>
-</div>		
-					<div class="input-append date">
-    <input value="12-02-2012">
-    <span class="add-on"><i class="icon-th"></i></span>
-</div>
-					
-							</div>								 
-									 
+							  <form:hidden path="id" />
+							  <div class="form-group">
+							      <label for="dataInicio" class="col-sm-2 control-label">Início</label>
+							      <div class="col-sm-10">
+							      	<form:input path="dataInicio" id="dataInicio" cssClass="form-control datepicker" placeholder="Data de Início (dd/mm/yyyy)" />
+								  </div>
+							  </div>							  
+							  <div class="form-group">
+							      <label for="dataFim" class="col-sm-2 control-label">Término</label>
+							      <div class="col-sm-10">
+							      	<form:input path="dataFim" id="dataFim" cssClass="form-control datepicker" placeholder="Data de Término (dd/mm/yyyy)" />
+								  </div>
+							  </div>							  
+							  <div class="form-group">
+							      <label for="percentualDesconto" class="col-sm-2 control-label">% de Desconto</label>
+							      <div class="col-sm-10">
+							      	<form:input path="percentualDesconto" id="percentualDesconto" cssClass="form-control" placeholder="% de Desconto" />
+								  </div>
+							  </div>							  
 							  <div class="form-group">
     							   <div class="col-sm-offset-2 col-sm-10">
       								 <button type="submit" class="btn btn-default">Salvar</button>
@@ -55,8 +53,15 @@
 			<hr>
 		</div>
 		<!-- /.container -->
-<script type="text/javascript">
-$(document).ready(function() {
-	$('.datepicker').datepicker();
-});
-</script>
+<script>
+  $(function() {
+    $( ".datepicker" ).datepicker({
+        dateFormat: 'dd/mm/yy',
+        dayNames: ['Domingo','Segunda','Terça','Quarta','Quinta','Sexta','Sábado','Domingo'],
+        dayNamesMin: ['D','S','T','Q','Q','S','S','D'],
+        dayNamesShort: ['Dom','Seg','Ter','Qua','Qui','Sex','Sáb','Dom'],
+        monthNames: ['Janeiro','Fevereiro','Março','Abril','Maio','Junho','Julho','Agosto','Setembro','Outubro','Novembro','Dezembro'],
+        monthNamesShort: ['Jan','Fev','Mar','Abr','Mai','Jun','Jul','Ago','Set','Out','Nov','Dez']
+    });
+  });
+  </script>
