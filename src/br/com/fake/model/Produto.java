@@ -7,6 +7,7 @@ import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -29,7 +30,7 @@ public class Produto implements Serializable {
 	private TipoDeProduto tipo;
 	private int mesesGarantia;
 	
-	@OneToOne(mappedBy = "produto")
+	@OneToOne(mappedBy = "produto", fetch = FetchType.EAGER)
 	private Promocao promocao;
 	
 	public String getDescricao() {
@@ -57,7 +58,6 @@ public class Produto implements Serializable {
 	public int getId(){
 		return this.id;
 	}
-	
 	public int getQuantidadeVendida() {
 		return quantidadeVendida;
 	}
@@ -88,8 +88,35 @@ public class Produto implements Serializable {
 	public void setPromocao(Promocao promocao) {
 		this.promocao = promocao;
 	}
+	public int getIdPromocao(){
+		if (promocao != null){
+			return promocao.getId();
+		}
+		return 0;
+	}
 	public boolean podeComprar(int quantidade){
 		int restantes = getProdutosDisponiveis() - quantidade;
 		return restantes > 0;
 	}
+	
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + id;
+		return result;
+	}
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Produto other = (Produto) obj;
+		if (id != other.id)
+			return false;
+		return true;
+	}	
 }

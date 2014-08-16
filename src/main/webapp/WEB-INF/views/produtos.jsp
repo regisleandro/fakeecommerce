@@ -65,9 +65,9 @@
 													<fmt:formatNumber value="${p.preco}" type="currency"/>
 												</td>
 										        <td>
-										        	<a href="<c:url value='/produtos/editar/${p.id}' />" class="btn btn-primary">Editar</a>
+										        	<a href="<c:url value='/produtos/editar/${p.id}' />" class="btn btn-default">Editar</a>
 										        	<a href="<c:url value='/produtos/excluir/${p.id}' />" class="btn btn-link">Excluir</a>
-										        	<a href="<c:url value='/promocoes/adicionar/${p.id}' />" class="btn btn-primary">Adicionar Promoção</a>
+										        	<a href="<c:url value='/promocoes/adicionar/${p.id}/promocao/${p.idPromocao}' />" class="btn btn-primary">Adicionar Promoção</a>
 										        </td>
 										    </tr>
 										</c:forEach>							           

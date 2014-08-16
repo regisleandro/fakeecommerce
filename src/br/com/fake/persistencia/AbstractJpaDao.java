@@ -24,11 +24,13 @@ public abstract class AbstractJpaDao<T extends Serializable>{
 	   }
 	
 	   public T findOne(int id){
+		  entityManager.clear();
 	      return entityManager.find(clazz, id);
 	   }
 	
 	   @SuppressWarnings("unchecked")
 	   public List<T> findAll(){
+		   entityManager.clear();
 		   List<T> lista = Collections.EMPTY_LIST;
 	      try{
 	    	  if (entityManager != null)
@@ -40,15 +42,21 @@ public abstract class AbstractJpaDao<T extends Serializable>{
 	   }
 	 
 	   public void save(T entity){
+		  entityManager.getTransaction().begin();
 	      entityManager.persist( entity );
+	      entityManager.getTransaction().commit();
 	   }
 	 
 	   public void update(T entity){
+		  entityManager.getTransaction().begin();
 	      entityManager.merge(entity);
+	      entityManager.getTransaction().commit();
 	   }
 	 
 	   public void delete(T entity){
+		  entityManager.getTransaction().begin();
 	      entityManager.remove( entity );
+	      entityManager.getTransaction().commit();
 	   }
 
 	   public void deleteById(int entityId){

@@ -21,33 +21,36 @@ public class CadastroDePromocoesController {
 	@Autowired
 	private ProdutoJpaDao produto;
 	
-	@RequestMapping(value = "/promocoes/adicionar/{id}")
-	public String editar(@PathVariable("id") int id, Model model){
+	@RequestMapping(value = "/promocoes/adicionar/{id}/promocao/{idPromo}")
+	public String editar(@PathVariable("id") int id, @PathVariable("idPromo") int idPromo, Model model){
 		Produto p = produto.findOne(id);
+		Promocao promo = promocao.findOne(idPromo);
 		model.addAttribute("panel","default");
-		model.addAttribute("titulo", "Cadastro de Promo√ß√µes para o Produto: "+ p.getDescricao());	
-		model.addAttribute("produto", p);
-		Promocao promo = p.getPromocao();
+		model.addAttribute("titulo", "Cadastro de PromoÁıes para o Produto: "+ p.getDescricao());	
 		if (promo == null){
 			 promo = new Promocao();
 		}
 		promo.setProduto(p);
+		p.setPromocao(promo);
 		model.addAttribute("promocao", promo);
 		model.addAttribute("action","/promocoes/salvar/");
 		return "promocoes";
 	}	
 	
 	@RequestMapping(value = "/promocoes/salvar/")
-	public String salvar(@ModelAttribute Promocao p, Model model) {
+	public String salvar(@ModelAttribute Promocao p, @ModelAttribute Produto prod, Model model) {
 		try{
-			System.out.println(p.getProduto().getDescricao());
-			promocao.save(p);
+			prod = produto.findOne(p.getProduto().getId());
+			prod.setPromocao(p);
+			p.setProduto(prod);
+			System.out.println(p.getDataInicio());
+			promocao.update(p);
 						
 		}catch(Exception ex){
 			ex.printStackTrace();		
 		}
 		
-		return "produtos";
+		return "redirect:/produtos/";
 	}	
 	
 	@RequestMapping(value = "/promocoes/excluir/{id}")
@@ -56,14 +59,14 @@ public class CadastroDePromocoesController {
 			promocao.deleteById(id);
 
 			model.addAttribute("panel","success");
-			model.addAttribute("titulo", "Exclus√£o de Promo√ß√£o - Conclu√≠do");	
+			model.addAttribute("titulo", "Exclus„o de PromÁ„o - Conclus„o");	
 			
 		}catch(Exception ex){
 			model.addAttribute("panel","danger");
-			model.addAttribute("titulo", "Cadastro de Produtos - Erro ao efetuar a exclus√£o");
+			model.addAttribute("titulo", "Cadastro de Produtos - Erro ao efetuar a exclus„o");
 			ex.printStackTrace();
 		}
 		
-		return "produtos";
+		return "redirect:/produtos/";
 	}	
 }

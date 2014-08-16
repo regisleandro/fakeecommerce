@@ -17,6 +17,7 @@
 							<form:form method="post" action="${actionPath}" 
 									  modelAttribute="promocao" cssClass="form-horizontal">
 							  <form:hidden path="id" />
+							  <form:hidden path="produto.id" />
 							  <div class="form-group">
 							      <label for="dataInicio" class="col-sm-2 control-label">Início</label>
 							      <div class="col-sm-10">

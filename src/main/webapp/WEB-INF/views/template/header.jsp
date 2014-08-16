@@ -17,7 +17,6 @@
 			id="bs-example-navbar-collapse-1">
 			<ul class="nav navbar-nav">
 				<li><a href="<c:url value='/produtos/'/>">Cadastro de Produtos</a></li>
-				<li><a href="#">Promoções</a></li>
 			</ul>
 		</div>
 		<!-- /.navbar-collapse -->
