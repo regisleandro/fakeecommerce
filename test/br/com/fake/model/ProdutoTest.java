@@ -9,7 +9,7 @@ import org.junit.Test;
 public class ProdutoTest {
 
 	@Test
-	public void deveVender1ingressoSeHa2vagas() throws Exception {
+	public void deveVender1ProdutoSeHa2EmEstoque() throws Exception {
 		Produto produto = new Produto();
         produto.setQuantidadeEstoque(2);
 
@@ -17,7 +17,7 @@ public class ProdutoTest {
  	}
 
 	@Test
-	public void deveVender5ingressosSeHa10vagas() throws Exception {
+	public void deveVender5ProdutosSeHa10EmEstoque() throws Exception {
 		Produto produto = new Produto();
 		produto.setQuantidadeEstoque(10);
 
@@ -25,7 +25,7 @@ public class ProdutoTest {
 	}
 
 	@Test
-	public void naoDeveVender3ingressoSeHa2vagas() throws Exception {
+	public void naoDeveVender3ProdutosSeHa2EmEstoque() throws Exception {
 		Produto produto = new Produto();
 		produto.setQuantidadeEstoque(2);
 
@@ -33,7 +33,7 @@ public class ProdutoTest {
 	}
 
 	@Test
-	public void reservarIngressosDeveDiminuirONumeroDeIngressosDisponiveis() throws Exception {
+	public void reservarProdutosDeveDiminuirONumeroDeProdutosDisponiveis() throws Exception {
 		Produto produto = new Produto();
 		produto.setQuantidadeEstoque(5);
 
